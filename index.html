@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>[College Name] — Home</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#f6f9fc;
+      --primary:#0b5ed7;      /* blue */
+      --accent:#d4af37;       /* gold */
+      --muted:#6b7280;
+      --card:#ffffff;
+      --radius:12px;
+      --maxw:1200px;
+      --glass: rgba(255,255,255,0.7);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,Arial,"Noto Sans",sans-serif;
+      background:var(--bg);
+      color:#0f1724;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* Header / Navbar */
+    header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:linear-gradient(180deg, rgba(11,94,215,0.95), rgba(11,94,215,0.9));
+      color:white;
+      box-shadow:0 6px 18px rgba(3,12,36,0.12);
+    }
+    .nav-inner{
+      max-width:var(--maxw);
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      gap:24px;
+      padding:12px 20px;
+      justify-content:space-between;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      text-decoration:none;
+      color:white;
+    }
+    .brand img{height:46px; width:46px; object-fit:cover; border-radius:8px; background:var(--glass); padding:6px}
+    .brand h1{font-size:1.05rem; margin:0; font-weight:700; letter-spacing:0.2px}
+    nav ul{list-style:none; display:flex; gap:12px; margin:0; padding:0; align-items:center}
+    nav a{
+      color:white; text-decoration:none; padding:8px 12px; border-radius:8px; font-weight:600; opacity:0.95;
+    }
+    nav a:hover{background:rgba(255,255,255,0.08)}
+    .cta{
+      background:var(--accent); color:#05203a; padding:8px 14px; border-radius:8px; font-weight:700;
+      box-shadow:0 6px 18px rgba(212,175,55,0.12);
+      text-decoration:none;
+    }
+
+    /* Hero */
+    .hero{
+      max-width:var(--maxw);
+      margin:28px auto;
+      height:440px;
+      border-radius:16px;
+      overflow:hidden;
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background-image:linear-gradient(0deg, rgba(3,7,18,0.35), rgba(3,7,18,0.15)), url('https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=0f9a1e6080f2f3ecff9fa6a6f4f4e3b1');
+      background-size:cover;
+      background-position:center;
+      padding:28px;
+      color:white;
+      box-shadow:0 8px 30px rgba(2,6,23,0.15);
+    }
+    .hero .content{
+      text-align:center;
+      max-width:880px;
+      padding:12px 24px;
+    }
+    .hero h2{font-size:2.1rem; margin:0 0 10px; font-weight:800; text-shadow:0 6px 20px rgba(2,6,23,0.45)}
+    .hero p{margin:0 0 18px; color:rgba(255,255,255,0.92); font-size:1.02rem}
+    .hero .actions{display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
+    .btn{
+      padding:12px 18px; border-radius:10px; text-decoration:none; font-weight:700; display:inline-block;
+      transition:transform .18s ease, box-shadow .18s ease;
+    }
+    .btn-primary{background:var(--accent); color:#042033}
+    .btn-outline{background:transparent; border:2px solid rgba(255,255,255,0.16); color:white}
+    .btn:hover{transform:translateY(-4px); box-shadow:0 12px 30px rgba(2,6,23,0.2)}
+
+    /* Main container & sections */
+    main{max-width:var(--maxw); margin:22px auto; padding:0 20px}
+    section.card{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:22px;
+      margin-bottom:18px;
+      box-shadow:0 8px 30px rgba(2,6,23,0.04);
+    }
+    .section-title{display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:14px}
+    .section-title h3{margin:0; font-size:1.15rem}
+
+    /* Courses grid */
+    .courses-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+    }
+    .course-card{
+      border-radius:12px; padding:14px; background:linear-gradient(180deg, #ffffff, #fbfdff); border:1px solid #eef3ff;
+      display:flex; flex-direction:column; gap:8px; min-height:150px;
+    }
+    .course-card h4{margin:0}
+    .course-meta{font-size:0.92rem; color:var(--muted)}
+
+    /* Responsive placements area */
+    .placements{
+      display:flex;
+      gap:20px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .placements .stats{display:flex; gap:12px; align-items:center; flex-wrap:wrap}
+    .stat{background:linear-gradient(180deg,#fff,#f9fbff); padding:12px 16px; border-radius:10px; border:1px solid #eef3ff; text-align:center; min-width:120px}
+    .stat strong{display:block; font-size:1.25rem; color:var(--primary)}
+    .recruiters{display:flex; gap:12px; align-items:center; flex-wrap:wrap}
+    .rec-logo{height:38px; width:auto; padding:6px; filter:grayscale(0.1) contrast(1.05); background:#fff; border-radius:8px; border:1px solid #eef3ff}
+
+    /* Facilities gallery */
+    .fac-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
+    .fac-grid img{width:100%; height:160px; object-fit:cover; border-radius:10px; border:1px solid #eef3ff}
+
+    /* Contact */
+    .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+    .contact-card{padding:14px; border-radius:10px; background:#fff; border:1px solid #eef3ff}
+    iframe.map{width:100%; height:260px; border-radius:10px; border:0}
+
+    /* Footer */
+    footer{max-width:var(--maxw); margin:18px auto 40px; padding:24px; border-radius:12px; background:linear-gradient(180deg,#04203a, #063b6d); color:white}
+    .footer-grid{display:flex; gap:18px; justify-content:space-between; align-items:flex-start; flex-wrap:wrap}
+    .socials img{height:28px; margin-right:8px}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .courses-grid{grid-template-columns:repeat(2,1fr)}
+      .fac-grid{grid-template-columns:repeat(2,1fr)}
+      .contact-grid{grid-template-columns:1fr}
+      .hero{height:380px}
+    }
+    @media (max-width:640px){
+      .nav-inner{padding:10px}
+      nav ul{display:none} /* simple mobile approach */
+      .hero h2{font-size:1.55rem}
+      .courses-grid{grid-template-columns:1fr}
+      header .brand h1{font-size:1rem}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header / Nav -->
+  <header>
+    <div class="nav-inner">
+      <a class="brand" href="#home">
+        <img src="https://via.placeholder.com/80x80.png?text=Logo" alt="[College Logo]">
+        <div>
+          <h1>[College Name]</h1>
+          <div style="font-size:0.78rem; color:rgba(255,255,255,0.9); margin-top:2px">Shaping Future Leaders</div>
+        </div>
+      </a>
+
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#courses">Courses</a></li>
+          <li><a href="#admissions">Admissions</a></li>
+          <li><a href="#placements">Placements</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+          <li><a class="cta" href="#admissions">Apply Now</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="home" role="banner" aria-label="College hero">
+    <div class="content">
+      <h2>Welcome to [College Name] — Shaping Future Leaders</h2>
+      <p>World-class education, industry-aligned curriculum, and a campus that empowers innovation and personal growth.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#admissions">Apply Now</a>
+        <a class="btn btn-outline" href="#about">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <!-- About -->
+    <section class="card" id="about" aria-labelledby="about-heading">
+      <div class="section-title">
+        <h3 id="about-heading">About Us</h3>
+        <div style="color:var(--muted)">Established 1990 • Accredited • Student-centric</div>
+      </div>
+      <div style="display:flex; gap:18px; align-items:center; flex-wrap:wrap">
+        <div style="flex:1; min-width:260px">
+          <p>Founded with the vision to provide high-quality education and industry-ready skills, [College Name] offers undergraduate and postgraduate courses across engineering, management, science, and arts. Our mission is to nurture critical thinking, ethical leadership, and lifelong learning.</p>
+          <ul style="color:var(--muted); margin-top:8px">
+            <li>Modern labs & research centers</li>
+            <li>Strong industry partnerships & placement support</li>
+            <li>Holistic student development programs</li>
+          </ul>
+        </div>
+        <div style="flex:1; min-width:260px">
+          <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=900&auto=format&fit=crop&ixlib=rb-4.0.3&s=2c8f1b8a8d0c0f8a96dfb4c3bd4f7eef" alt="students" style="width:100%; border-radius:10px; object-fit:cover; height:220px">
+        </div>
+      </div>
+    </section>
+
+    <!-- Courses -->
+    <section class="card" id="courses" aria-labelledby="courses-heading">
+      <div class="section-title">
+        <h3 id="courses-heading">Our Courses</h3>
+        <div style="color:var(--muted)">Undergraduate & Postgraduate programs</div>
+      </div>
+      <div class="courses-grid" role="list">
+        <article class="course-card" role="listitem">
+          <h4>B.Tech — Computer Science</h4>
+          <div class="course-meta">120 seats • 4 years • Industry-aligned curriculum</div>
+          <p style="margin-top:auto">Focuses on algorithms, data structures, AI, and software engineering. Strong placement support and internship opportunities.</p>
+          <a href="#admissions" style="margin-top:8px; color:var(--primary); font-weight:700; text-decoration:none">Read More →</a>
+        </article>
+
+        <article class="course-card" role="listitem">
+          <h4>B.Tech — Mechanical Engineering</h4>
+          <div class="course-meta">60 seats • 4 years</div>
+          <p style="margin-top:auto">Emphasizes design, manufacturing, thermodynamics, and hands-on lab experience.</p>
+          <a href="#admissions" style="margin-top:8px; color:var(--primary); font-weight:700; text-decoration:none">Read More →</a>
+        </article>
+
+        <article class="course-card" role="listitem">
+          <h4>MBA — Finance & Marketing</h4>
+          <div class="course-meta">60 seats • 2 years</div>
+          <p style="margin-top:auto">Blends theory and case-study methods with internships and placement drives.</p>
+          <a href="#admissions" style="margin-top:8px; color:var(--primary); font-weight:700; text-decoration:none">Read More →</a>
+        </article>
+
+        <article class="course-card" role="listitem">
+          <h4>B.Sc — Physics & Mathematics</h4>
+          <div class="course-meta">60 seats each • 3 years</div>
+          <p style="margin-top:auto">Rigorous curriculum with research project opportunities and lab exposure.</p>
+          <a href="#admissions" style="margin-top:8px; color:var(--primary); font-weight:700; text-decoration:none">Read More →</a>
+        </article>
+
+        <article class="course-card" role="listitem">
+          <h4>B.Com — Accounting & Finance</h4>
+          <div class="course-meta">120 seats • 3 years</div>
+          <p style="margin-top:auto">Strong foundation in commerce, taxation, and finance with professional exam prep support.</p>
+          <a href="#admissions" style="margin-top:8px; color:var(--primary); font-weight:700; text-decoration:none">Read More →</a>
+        </article>
+
+        <article class="course-card" role="listitem">
+          <h4>MCA — Computer Applications</h4>
+          <div class="course-meta">60 seats • 2 years</div>
+          <p style="margin-top:auto">Practical focus on software dev, databases, and cloud technologies.</p>
+          <a href="#admissions" style="margin-top:8px; color:var(--primary); font-weight:700; text-decoration:none">Read More →</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- Placements -->
+    <section class="card" id="placements" aria-labelledby="placements-heading">
+      <div class="section-title">
+        <h3 id="placements-heading">Placements & Industry</h3>
+        <div style="color:var(--muted)">Real outcomes • Top recruiters • Student success</div>
+      </div>
+
+      <div class="placements">
+        <div class="stats" aria-hidden="true">
+          <div class="stat">
+            <div class="muted" style="font-size:0.85rem; color:var(--muted)">Avg Salary</div>
+            <strong>₹6.2 LPA</strong>
+          </div>
+          <div class="stat">
+            <div class="muted" style="font-size:0.85rem; color:var(--muted)">Placement Rate</div>
+            <strong>88%</strong>
+          </div>
+          <div class="stat">
+            <div class="muted" style="font-size:0.85rem; color:var(--muted)">Top Package</div>
+            <strong>₹24 LPA</strong>
+          </div>
+        </div>
+
+        <div style="flex:1; min-width:260px;">
+          <p>Our dedicated Training & Placement Cell works year-round to provide recruitment exposure, industry workshops, certification drives and live projects. We foster long-term partnerships with recruiters and alumni mentors.</p>
+
+          <div style="margin-top:12px">
+            <div class="recruiters" aria-label="Top recruiters">
+              <img class="rec-logo" src="https://via.placeholder.com/120x38?text=TCS" alt="TCS">
+              <img class="rec-logo" src="https://via.placeholder.com/120x38?text=INFOSYS" alt="Infosys">
+              <img class="rec-logo" src="https://via.placeholder.com/120x38?text=WIPRO" alt="Wipro">
+              <img class="rec-logo" src="https://via.placeholder.com/120x38?text=AMAZON" alt="Amazon">
+              <img class="rec-logo" src="https://via.placeholder.com/120x38?text=ACCENTURE" alt="Accenture">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Success story -->
+      <div style="margin-top:14px; border-top:1px dashed #eef3ff; padding-top:12px; display:flex; gap:12px; flex-wrap:wrap">
+        <div style="flex:1; min-width:240px; background:#f8fbff; border-radius:10px; padding:12px; border:1px solid #eef3ff">
+          <strong>Alumni Success</strong>
+          <p style="margin:6px 0 0; color:var(--muted)">"I secured a role at a leading product firm through campus placements. The training and mentorship were pivotal." — <em>Riya S., CSE 2021</em></p>
+        </div>
+
+        <div style="flex:1; min-width:240px; background:#fffaf0; border-radius:10px; padding:12px; border:1px solid #fff2d6">
+          <strong>Internships</strong>
+          <p style="margin:6px 0 0; color:var(--muted)">Students complete internships at companies across software, manufacturing, finance and research labs.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hostel & Facilities -->
+    <section class="card" id="facilities" aria-labelledby="facilities-heading">
+      <div class="section-title">
+        <h3 id="facilities-heading">Hostel & Campus Facilities</h3>
+        <div style="color:var(--muted)">Comfortable living • Learning resources • Recreation</div>
+      </div>
+
+      <div style="display:flex; gap:14px; flex-wrap:wrap">
+        <div style="flex:1; min-width:260px">
+          <h4>Hostel</h4>
+          <p>Separate, secure hostels for boys and girls with furnished rooms, 24/7 security, hygienic mess, high-speed Wi-Fi and on-call medical support.</p>
+          <ul style="color:var(--muted)">
+            <li>Single / Double occupancy rooms</li>
+            <li>Mess with vegetarian & non-veg options</li>
+            <li>Warden & CCTV monitored premises</li>
+          </ul>
+
+          <h4 style="margin-top:12px">Library & Labs</h4>
+          <p>Central library with journals, e-resources and digital access. Specialized labs for CS, Electronics, Mechanical and Chemistry with industry-standard equipment.</p>
+        </div>
+
+        <div style="flex:1; min-width:260px">
+          <div class="fac-grid" aria-hidden="true">
+            <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=900&auto=format&fit=crop&ixlib=rb-4.0.3&s=6e2f6c6a2b6f8bb4d8f1e4b4c0e0b6a9" alt="hostel room">
+            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=900&auto=format&fit=crop&ixlib=rb-4.0.3&s=8c3380f7f0aada1b8c3f3e6d1c7b2f2d" alt="library">
+            <img src="https://images.unsplash.com/photo-1557800636-894a64c1696f?q=80&w=900&auto=format&fit=crop&ixlib=rb-4.0.3&s=7a1d2b2e3b3d1b1cbb8a3a2b3c4d5e6f" alt="sports">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Admissions snippet -->
+    <section class="card" id="admissions" aria-labelledby="admissions-heading">
+      <div class="section-title">
+        <h3 id="admissions-heading">Admissions</h3>
+        <div style="color:var(--muted)">Apply for the upcoming academic session</div>
+      </div>
+      <p>Admissions are based on qualifying exam scores and entrance test results as per the program. We provide merit & need-based scholarships. Click Apply to start your application.</p>
+      <a class="btn btn-primary" href="#contact" style="margin-top:12px; display:inline-block">Start Application</a>
+    </section>
+
+    <!-- Contact -->
+    <section class="card" id="contact" aria-labelledby="contact-heading">
+      <div class="section-title">
+        <h3 id="contact-heading">Contact & Location</h3>
+        <div style="color:var(--muted)">Reach out to our admissions office</div>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h4>Admissions Office</h4>
+          <p style="margin:6px 0 0"><strong>Email:</strong> admissions@[college].edu</p>
+          <p style="margin:6px 0 0"><strong>Phone:</strong> +91 98765 43210</p>
+          <p style="margin:6px 0 0"><strong>Address:</strong> 123 College Road, City, State, PIN</p>
+
+          <div style="margin-top:10px">
+            <strong>Office Hours:</strong>
+            <p style="margin:6px 0 0; color:var(--muted)">Mon - Sat • 9:00 AM - 5:00 PM</p>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <h4>Find Us</h4>
+          <!-- Replace src with actual Google Maps embed link for the campus -->
+          <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.086...YOUR_MAP_EMBED_HERE" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="College location"></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer role="contentinfo" aria-label="Footer">
+    <div class="footer-grid" style="max-width:var(--maxw); margin:0 auto;">
+      <div>
+        <h4 style="margin:0 0 6px">[College Name]</h4>
+        <p style="margin:0 0 12px; color:rgba(255,255,255,0.9)">Empowering education, research and innovation since 1990</p>
+        <div style="color:rgba(255,255,255,0.85); font-size:0.95rem">© <span id="year"></span> [College Name]. All rights reserved.</div>
+      </div>
+
+      <div style="min-width:260px">
+        <h4 style="margin:0 0 6px">Quick Links</h4>
+        <nav aria-label="Footer links" style="display:flex; gap:8px; flex-wrap:wrap">
+          <a href="#courses" style="color:white; text-decoration:none">Courses</a>
+          <a href="#admissions" style="color:white; text-decoration:none">Admissions</a>
+          <a href="#placements" style="color:white; text-decoration:none">Placements</a>
+          <a href="#contact" style="color:white; text-decoration:none">Contact</a>
+        </nav>
+      </div>
+
+      <div>
+        <h4 style="margin:0 0 6px">Follow Us</h4>
+        <div class="socials" style="display:flex; gap:8px; align-items:center">
+          <img src="https://via.placeholder.com/28x28.png?text=F" alt="facebook">
+          <img src="https://via.placeholder.com/28x28.png?text=L" alt="linkedin">
+          <img src="https://via.placeholder.com/28x28.png?text=I" alt="instagram">
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Chatbot: Orimon -->
+  <script src="https://bot.orimon.ai/deploy/index.js" tenantId="5722d863-3d6b-439f-81a6-0707fa7a41e6"></script>
+
+  <!-- Simple JS: set year and mobile nav toggle -->
+  <script>
+    // set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // small helper: smooth highlight for nav links on scroll (active state)
+    const sections = [...document.querySelectorAll('main section')];
+    const navLinks = [...document.querySelectorAll('nav a')];
+
+    function onScroll(){
+      const y = window.scrollY + 120;
+      let current = sections[0];
+      for(const s of sections){
+        if(s.offsetTop <= y) current = s;
+      }
+      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + (current.id || 'home')));
+    }
+    window.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
+
+    // simple mobile nav toggle (basic)
+    // NOTE: For a production site, replace with a proper responsive menu.
+    window.addEventListener('load', ()=>{
+      const nav = document.querySelector('nav');
+      if(window.innerWidth < 640 && nav){
+        const btn = document.createElement('button');
+        btn.innerHTML = 'Menu';
+        btn.style.background = 'transparent';
+        btn.style.color = 'white';
+        btn.style.border = '1px solid rgba(255,255,255,0.12)';
+        btn.style.padding = '8px 10px';
+        btn.style.borderRadius = '8px';
+        btn.onclick = ()=> {
+          const ul = nav.querySelector('ul');
+          if(ul.style.display === 'flex'){ ul.style.display = 'none'; }
+          else{ ul.style.display = 'flex'; ul.style.flexDirection='column'; ul.style.background='rgba(2,6,23,0.85)'; ul.style.padding='8px'; ul.style.position='absolute'; ul.style.right='20px'; ul.style.top='62px'; }
+        };
+        document.querySelector('.nav-inner').appendChild(btn);
+      }
+    });
+  </script>
+
+</body>
+</html>
